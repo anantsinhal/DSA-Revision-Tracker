@@ -7,6 +7,8 @@ export interface Problem {
   platform: Platform;
   difficulty: Difficulty;
   tags: string[];
+  companyTags?: string[];
+  url?: string;
 
   source?: "manual" | "leetcode";
   sourceMeta?: {
@@ -16,8 +18,11 @@ export interface Problem {
   };
 
   approach: string;
+  intuition?: string;
   timeComplexity: string;
   spaceComplexity: string;
+  solveDuration?: number;
+  isBookmarked?: boolean;
   confidenceLevel: 1 | 2 | 3 | 4 | 5;
   lastRevisedDate: string;
   nextRevisionDate: string;

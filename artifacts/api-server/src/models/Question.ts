@@ -16,9 +16,14 @@ export interface IQuestion extends Document {
   platform: "LeetCode" | "GeeksForGeeks" | "Codeforces" | "Other";
   difficulty: "Easy" | "Medium" | "Hard";
   tags: string[];
+  companyTags: string[];
+  url?: string;
   approach: string;
+  intuition: string;
   timeComplexity: string;
   spaceComplexity: string;
+  solveDuration?: number;
+  isBookmarked: boolean;
 
   source: QuestionSource;
   sourceMeta?: QuestionSourceMeta;
@@ -52,6 +57,11 @@ const QuestionSchema = new Schema<IQuestion>(
       enum: ["Easy", "Medium", "Hard"],
     },
     tags: { type: [String], default: [] },
+    companyTags: { type: [String], default: [] },
+    url: { type: String, trim: true },
+    intuition: { type: String, default: "" },
+    solveDuration: { type: Number },
+    isBookmarked: { type: Boolean, default: false },
     source: {
       type: String,
       enum: ["manual", "leetcode"],

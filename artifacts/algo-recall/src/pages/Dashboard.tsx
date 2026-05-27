@@ -3,10 +3,12 @@ import { Layout } from "@/components/layout/Layout";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useDashboardAnalytics } from "@/hooks/useDashboardAnalytics";
 import { useAuth } from "@/contexts/AuthContext";
+import { useProblems } from "@/hooks/useProblems";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { StreakBadge } from "@/components/dashboard/StreakBadge";
 import { MiniRevisionQueue } from "@/components/dashboard/MiniRevisionQueue";
 import { RevisionHeatmap } from "@/components/dashboard/RevisionHeatmap";
+import { InterviewReadiness } from "@/components/dashboard/InterviewReadiness";
 import { LeetCodeConnectDialog } from "@/components/settings/LeetCodeConnectDialog";
 import { BrainCircuit, Target, CheckCircle2, TrendingUp, RefreshCw, BarChart2, Zap } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -17,6 +19,7 @@ export default function Dashboard() {
   const { state } = useAnalytics();
   const { summary, topics, activity, isLoading, isError } = useDashboardAnalytics();
   const { user } = useAuth();
+  const { problems } = useProblems();
   const [lcDialogOpen, setLcDialogOpen] = useState(false);
 
   useEffect(() => {
@@ -216,6 +219,11 @@ export default function Dashboard() {
           </div>
 
           <div className="space-y-6">
+            <InterviewReadiness
+              problems={problems}
+              streak={summary.streak}
+            />
+
             <Card>
               <CardHeader className="pb-3">
                 <CardTitle className="text-base flex justify-between items-center">
