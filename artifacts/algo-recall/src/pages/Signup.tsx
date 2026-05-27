@@ -21,30 +21,51 @@ export default function Signup() {
     
     try {
       // 1. Register
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      
-      const data = await res.json();
-      
+      let res: Response;
+      try {
+        res = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+      } catch {
+        throw new Error("Cannot reach the server. Please try again in a moment.");
+      }
+
+      let data: any;
+      try {
+        data = await res.json();
+      } catch {
+        throw new Error(`Server error (${res.status}). Please try again.`);
+      }
+
       if (!res.ok) {
         throw new Error(data.error || "Failed to sign up");
       }
 
       // 2. Automatically login after successful registration
-      const loginRes = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      
-      const loginData = await loginRes.json();
+      let loginRes: Response;
+      try {
+        loginRes = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+      } catch {
+        throw new Error("Account created but login failed. Please log in manually.");
+      }
+
+      let loginData: any;
+      try {
+        loginData = await loginRes.json();
+      } catch {
+        throw new Error(`Login error (${loginRes.status}). Please log in manually.`);
+      }
+
       if (!loginRes.ok) {
         throw new Error(loginData.error || "Signup succeeded but login failed");
       }
-      
+
       login(loginData.token, loginData.user);
       toast({ title: "Account created successfully!" });
       setLocation("/");
