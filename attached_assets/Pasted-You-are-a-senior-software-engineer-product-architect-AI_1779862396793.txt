@@ -1,0 +1,493 @@
+You are a senior software engineer, product architect, AI systems designer, and UX engineer.
+
+I have already built most of my DSA Revision Tracker platform. Your job is NOT to rebuild from scratch.
+
+First analyze the existing codebase completely.
+
+Understand:
+- Existing architecture
+- Current database schema
+- Existing components
+- Existing API routes
+- Existing analytics logic
+- Existing revision logic
+- Existing authentication flow
+- Existing UI patterns
+
+Preserve working functionality.
+
+Only improve where necessary.
+
+Goal:
+
+Transform this project into a premium 2026-quality DSA Revision Intelligence Platform focused on:
+
+- Long-term retention
+- Revision science
+- Interview preparation
+- Performance analytics
+- Weakness detection
+- AI-assisted learning
+
+FEATURE REQUIREMENTS
+
+=================================================
+1. PROBLEM MANAGEMENT SYSTEM
+=================================================
+
+Support:
+
+- Problem title
+- Platform source
+(LeetCode / Codeforces / Custom)
+
+- Difficulty
+(Easy / Medium / Hard)
+
+- Topic tags
+
+Examples:
+
+Arrays
+DP
+Graphs
+Tree
+Trie
+Greedy
+Binary Search
+Sliding Window
+Stack
+Queue
+Heap
+Linked List
+
+- Company tags
+
+- Problem URL
+
+- Personal notes
+
+- Key intuition section
+
+- Mistakes section
+
+- Confidence score (1–5)
+
+- Solve duration
+
+- Revision count
+
+- Last revised timestamp
+
+- Bookmark important problems
+
+- Solved status
+
+- Revision status
+
+- Custom labels
+
+=================================================
+2. SMART REVISION ENGINE
+=================================================
+
+Implement spaced repetition:
+
+Day 1
+Day 3
+Day 7
+Day 14
+Day 30
+
+Requirements:
+
+- Automatic revision scheduling
+
+- Revision priority score
+
+Factors:
+
+- Confidence score
+- Forgotten history
+- Difficulty
+- Revision consistency
+
+Build:
+
+Forget Probability Score
+
+Prioritize:
+
+- Forgotten problems
+
+- Hard problems
+
+- Weak topics
+
+Generate intelligent revision queue.
+
+Detect:
+
+"Frequently forgotten Graph problems"
+
+"Binary Search revision dropped"
+
+"DP retention decreasing"
+
+=================================================
+3. ANALYTICS DASHBOARD
+=================================================
+
+Build premium analytics:
+
+- Daily solved count
+
+- Weekly solved count
+
+- Monthly solved count
+
+- Revision streak
+
+- Heatmap consistency graph
+
+- Topic mastery %
+
+- Weak topic analytics
+
+- Difficulty distribution
+
+- Revision completion %
+
+- Average solve time
+
+- Most forgotten topics
+
+- Confidence trend
+
+- Revision frequency trend
+
+- Topic comparison chart
+
+- Solve velocity trend
+
+- Retention trend
+
+- Forget rate trend
+
+=================================================
+4. WEAKNESS DETECTION SYSTEM
+=================================================
+
+Generate insights:
+
+"You struggle in Graph + DP"
+
+"Array retention improving"
+
+"Binary Search consistency dropped"
+
+"Revision frequency low in Trees"
+
+Detect:
+
+- Weak topics
+
+- Weak patterns
+
+- Low confidence clusters
+
+- Revision gaps
+
+- Inconsistent practice
+
+=================================================
+5. AI MISTAKE ANALYZER
+=================================================
+
+Users can provide:
+
+- Code attempt
+
+- Failed submission
+
+- Runtime error
+
+- Wrong output
+
+- Thought process
+
+AI analyzes:
+
+- Logic errors
+
+- Edge cases missed
+
+- Time complexity inefficiencies
+
+- Space inefficiencies
+
+- Wrong algorithm choice
+
+- Pattern mismatch
+
+Examples:
+
+"This resembles Sliding Window"
+
+"Prefix Sum may fit better"
+
+"Boundary handling issue"
+
+"Off-by-one error detected"
+
+"Missed empty input edge case"
+
+"Brute force can become O(n)"
+
+"Two Pointer pattern applicable"
+
+Detect:
+
+- Bug patterns
+
+- Frequent mistake categories
+
+- Repeated weakness trends
+
+Generate learning insights:
+
+"You frequently miss graph edge cases"
+
+"DP state transition mistakes recurring"
+
+"Boundary condition handling improved"
+
+DO NOT reveal full solutions directly.
+
+Act as learning assistant.
+
+=================================================
+6. AI PATTERN RECOGNITION
+=================================================
+
+Analyze solved problems.
+
+Suggest:
+
+"This resembles BFS"
+
+"Looks similar to Prefix Sum"
+
+"Sliding Window applicable"
+
+"Binary Search optimization possible"
+
+Identify learning patterns.
+
+=================================================
+7. AI REVISION QUIZ SYSTEM
+=================================================
+
+Generate:
+
+- Recall questions
+
+- Pattern recognition questions
+
+- Topic-based revision quizzes
+
+- Concept checks
+
+Examples:
+
+"What indicates Binary Search applicability?"
+
+"When should Sliding Window be preferred?"
+
+"What makes DP suitable?"
+
+=================================================
+8. INTERVIEW READINESS SYSTEM
+=================================================
+
+Build:
+
+Interview Readiness Score
+
+Factors:
+
+- Consistency
+
+- Topic coverage
+
+- Weak topics
+
+- Revision completion
+
+- Confidence score
+
+Generate insights:
+
+"Interview ready for Arrays"
+
+"Need Graph revision"
+
+"DP retention below target"
+
+=================================================
+9. TOPIC DEPENDENCY GRAPH
+=================================================
+
+Generate progression maps:
+
+Arrays
+→ Prefix Sum
+→ Sliding Window
+→ Two Pointer
+
+Trees
+→ BST
+→ AVL
+→ Segment Tree
+
+Graphs
+→ BFS
+→ DFS
+→ Topological Sort
+→ Dijkstra
+
+Visualize dependencies.
+
+=================================================
+10. PRODUCTIVITY FEATURES
+=================================================
+
+Add:
+
+- Daily goals
+
+- Streak tracking
+
+- Achievement badges
+
+- Milestones
+
+- Revision reminders
+
+- Pomodoro timer
+
+=================================================
+11. COMPETITIVE PROGRAMMING SUPPORT
+=================================================
+
+Support:
+
+- LeetCode integration
+
+- Codeforces integration
+
+- Contest analytics
+
+- Contest history
+
+- Contest improvement trends
+
+=================================================
+12. SEARCH + FILTER SYSTEM
+=================================================
+
+Powerful filtering:
+
+By:
+
+- Topic
+
+- Difficulty
+
+- Weakness
+
+- Confidence
+
+- Forgotten probability
+
+- Revision status
+
+Global search:
+
+Search notes
+
+Search intuition
+
+Search mistakes
+
+Search problem titles
+
+=================================================
+13. UX REQUIREMENTS
+=================================================
+
+Premium 2026 UX.
+
+Requirements:
+
+- Fast
+
+- Minimal clicks
+
+- Clean UI
+
+- High information density
+
+- Mobile responsive
+
+- Dark mode
+
+- Smooth animations
+
+- Powerful dashboard
+
+- Professional visual hierarchy
+
+- Zero clutter
+
+=================================================
+14. ENGINEERING REQUIREMENTS
+=================================================
+
+- Modular architecture
+
+- Reusable components
+
+- Production quality
+
+- Proper validation
+
+- Error handling
+
+- Scalable code
+
+- Performance optimization
+
+- Maintain existing functionality
+
+- Refactor only when necessary
+
+=================================================
+
+Before coding:
+
+1. Analyze existing project
+
+2. Identify gaps
+
+3. Create implementation plan
+
+4. Prioritize missing features
+
+5. Implement incrementally
+
+Do not break working functionality.
+
+Goal:
+
+Build one of the strongest DSA Revision Intelligence Platforms possible.
