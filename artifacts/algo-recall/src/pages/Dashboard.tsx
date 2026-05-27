@@ -1,11 +1,14 @@
+import { useEffect, useState } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { useDashboardAnalytics } from "@/hooks/useDashboardAnalytics";
+import { useAuth } from "@/contexts/AuthContext";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { StreakBadge } from "@/components/dashboard/StreakBadge";
 import { MiniRevisionQueue } from "@/components/dashboard/MiniRevisionQueue";
 import { RevisionHeatmap } from "@/components/dashboard/RevisionHeatmap";
-import { BrainCircuit, Target, CheckCircle2, AlertTriangle, TrendingUp, RefreshCw, BarChart2 } from "lucide-react";
+import { LeetCodeConnectDialog } from "@/components/settings/LeetCodeConnectDialog";
+import { BrainCircuit, Target, CheckCircle2, TrendingUp, RefreshCw, BarChart2, Zap } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
@@ -13,6 +16,22 @@ import { Button } from "@/components/ui/button";
 export default function Dashboard() {
   const { state } = useAnalytics();
   const { summary, topics, activity, isLoading, isError } = useDashboardAnalytics();
+  const { user } = useAuth();
+  const [lcDialogOpen, setLcDialogOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isLoading && user && !user.leetcodeUsername) {
+      const dismissed = sessionStorage.getItem("lc-dialog-dismissed");
+      if (!dismissed) {
+        setLcDialogOpen(true);
+      }
+    }
+  }, [isLoading, user]);
+
+  const handleDialogClose = (open: boolean) => {
+    if (!open) sessionStorage.setItem("lc-dialog-dismissed", "1");
+    setLcDialogOpen(open);
+  };
 
   if (isLoading) return <Layout><div className="flex h-full items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div></div></Layout>;
   if (isError || !summary || !topics || !activity) return <Layout><div className="flex h-full items-center justify-center">Error loading analytics.</div></Layout>;
@@ -26,11 +45,64 @@ export default function Dashboard() {
 
   return (
     <Layout>
+      <LeetCodeConnectDialog open={lcDialogOpen} onOpenChange={handleDialogClose} />
       <div className="space-y-8 animate-in fade-in duration-500">
         <div>
           <h1 className="text-3xl font-bold tracking-tight mb-2">Dashboard</h1>
           <p className="text-muted-foreground">Welcome back. Here's your revision progress.</p>
         </div>
+
+        {!user?.leetcodeUsername && (
+          <div className="flex items-center justify-between gap-4 rounded-xl border border-orange-500/30 bg-orange-500/5 px-4 py-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <Zap className="w-5 h-5 text-orange-500 shrink-0" />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-orange-600 dark:text-orange-400">
+                  Supercharge with LeetCode Sync
+                </p>
+                <p className="text-xs text-muted-foreground truncate">
+                  Import your solved problems and get personalized revision schedules based on weak patterns.
+                </p>
+              </div>
+            </div>
+            <Button
+              size="sm"
+              className="shrink-0 bg-orange-500 hover:bg-orange-600 text-white"
+              onClick={() => setLcDialogOpen(true)}
+            >
+              Connect
+            </Button>
+          </div>
+        )}
+
+        {user?.leetcodeUsername && (
+          <div className="flex items-center justify-between gap-4 rounded-xl border border-green-500/30 bg-green-500/5 px-4 py-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0" />
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-green-600 dark:text-green-400">
+                  LeetCode Connected — @{user.leetcodeUsername}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {user.leetcodeSync?.importedProblemsCount
+                    ? `${user.leetcodeSync.importedProblemsCount} problems imported`
+                    : "Ready to sync"}
+                  {user.leetcodeSync?.lastSyncAt
+                    ? ` · Last synced ${new Date(user.leetcodeSync.lastSyncAt).toLocaleDateString()}`
+                    : ""}
+                </p>
+              </div>
+            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              className="shrink-0 border-green-500/40 text-green-600 hover:bg-green-500/10"
+              onClick={() => setLcDialogOpen(true)}
+            >
+              Re-sync
+            </Button>
+          </div>
+        )}
 
         <StreakBadge 
           currentStreak={summary.streak} 
