@@ -43,30 +43,8 @@ export default function Signup() {
         throw new Error(data.error || "Failed to sign up");
       }
 
-      // 2. Automatically login after successful registration
-      let loginRes: Response;
-      try {
-        loginRes = await fetch("/api/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        });
-      } catch {
-        throw new Error("Account created but login failed. Please log in manually.");
-      }
-
-      let loginData: any;
-      try {
-        loginData = await loginRes.json();
-      } catch {
-        throw new Error(`Login error (${loginRes.status}). Please log in manually.`);
-      }
-
-      if (!loginRes.ok) {
-        throw new Error(loginData.error || "Signup succeeded but login failed");
-      }
-
-      login(loginData.token, loginData.user);
+      // Register now returns a token directly — log in immediately
+      login(data.token, data.user);
       toast({ title: "Account created successfully!" });
       setLocation("/");
     } catch (err: any) {

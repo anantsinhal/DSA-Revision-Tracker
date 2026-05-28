@@ -24,9 +24,12 @@ router.post("/register", async (req, res) => {
     const passwordHash = await bcrypt.hash(password, salt);
 
     const user = await User.create({ email, passwordHash });
-    
-    // Optionally return a token right away or just success
-    return res.status(201).json({ success: true, user: user.toJSON() });
+
+    const token = jwt.sign({ userId: user._id.toString() }, getSecret(), {
+      expiresIn: "7d",
+    });
+
+    return res.status(201).json({ token, user: user.toJSON() });
   } catch (err) {
     req.log.error({ err }, "Registration failed");
     return res.status(500).json({ error: "Registration failed" });

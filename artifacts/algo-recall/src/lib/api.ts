@@ -81,7 +81,14 @@ export async function updateLeetCodeUsername(leetcodeUsername: string): Promise<
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ leetcodeUsername }),
   });
-  if (!res.ok) throw new Error(`Failed to save LeetCode username: ${res.status}`);
+  if (!res.ok) {
+    let msg = `Failed to save LeetCode username (${res.status})`;
+    try {
+      const body = await res.json();
+      if (body?.error) msg = body.error;
+    } catch { /* ignore */ }
+    throw new Error(msg);
+  }
   return res.json();
 }
 
@@ -93,7 +100,14 @@ export async function syncLeetCodeProblems(): Promise<{
   const res = await apiFetch(`${INTEGRATIONS_BASE}/leetcode/sync`, {
     method: "POST",
   });
-  if (!res.ok) throw new Error(`Failed to sync LeetCode problems: ${res.status}`);
+  if (!res.ok) {
+    let msg = `Failed to sync LeetCode problems (${res.status})`;
+    try {
+      const body = await res.json();
+      if (body?.error) msg = body.error;
+    } catch { /* ignore */ }
+    throw new Error(msg);
+  }
   return res.json();
 }
 

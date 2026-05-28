@@ -24,9 +24,9 @@ router.patch("/leetcode/username", async (req: AuthRequest, res) => {
       return res.status(400).json({ error: "leetcodeUsername is too long" });
     }
 
-    // LeetCode usernames typically allow alnum + _ + -.
-    if (leetcodeUsername.length > 0 && !/^[a-zA-Z0-9_-]+$/.test(leetcodeUsername)) {
-      return res.status(400).json({ error: "leetcodeUsername contains invalid characters" });
+    // LeetCode usernames allow alphanumerics, underscores, hyphens, and dots.
+    if (leetcodeUsername.length > 0 && !/^[a-zA-Z0-9._-]+$/.test(leetcodeUsername)) {
+      return res.status(400).json({ error: "LeetCode username contains invalid characters. Only letters, numbers, dots, hyphens, and underscores are allowed." });
     }
 
     const user = await User.findByIdAndUpdate(
